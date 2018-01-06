@@ -19,8 +19,9 @@ namespace TienditaDePraga
             Meses = new ObservableCollection<Mes>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
 
-            MessagingCenter.Subscribe<NewItemPage, Mes>(this, "AddItem", async (obj, item) =>
+            MessagingCenter.Subscribe<NewMesPage, Mes>(this, "AddItem", async (obj, item) =>
             {
+                MessagingCenter.Unsubscribe<NewMesPage, Mes>(this, "AddItem");
                 var _item = item as Mes;
                 Meses.Add(_item);
                 await App.Database.SaveItemAsync(_item);

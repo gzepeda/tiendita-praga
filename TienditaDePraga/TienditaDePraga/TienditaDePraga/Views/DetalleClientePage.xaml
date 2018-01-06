@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-             x:Class="TienditaDePraga.NewClientePage"
-		Title="Nuevo Cliente">
+             x:Class="TienditaDePraga.DetalleClientePage"
+		Title="Nuevo cliente para el mes">
 	<ContentPage.ToolbarItems>
-		<ToolbarItem Text="Guardar" Clicked="Save_Clicked" />
+		<ToolbarItem Text="Save" Clicked="Save_Clicked" />
 	</ContentPage.ToolbarItems>
 	<ContentPage.Content>
 		<StackLayout Spacing="20" Padding="15">
 			<Label Text="Nombre" FontSize="Medium" />
-            <Entry Text="{Binding ClienteNuevo.Nombre}" FontSize="Small" />
+            <Entry Text="{Binding Item.Nombre}" FontSize="Small" />
         </StackLayout>
 	</ContentPage.Content>
 </ContentPage>

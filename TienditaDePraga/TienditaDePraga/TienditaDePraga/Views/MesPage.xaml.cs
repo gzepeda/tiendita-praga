@@ -23,7 +23,8 @@ namespace TienditaDePraga
             if (item == null)
                 return;
 
-            await Navigation.PushAsync(new ItemDetailPage(new ItemDetailViewModel(item)));
+            //await Navigation.PushAsync(new ItemDetailPage(new ItemDetailViewModel(item)));
+            await Navigation.PushAsync(new ClientesMesPage(item));
 
             // Manually deselect item
             ItemsListView.SelectedItem = null;
@@ -31,7 +32,7 @@ namespace TienditaDePraga
 
         async void AddItem_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new NewItemPage());
+            await Navigation.PushAsync(new NewMesPage());
         }
 
         protected override void OnAppearing()

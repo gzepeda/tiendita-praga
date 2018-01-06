@@ -21,11 +21,11 @@ namespace TienditaDePraga
             MesSeleccionado = mes;
             Clientes = new ObservableCollection<Cliente>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
-
-            MessagingCenter.Subscribe<NewClientePage, Cliente>(this, "AddItem", async (obj, item) =>
+                        
+            MessagingCenter.Subscribe<NewClientePage, Cliente>(this, "AgregarCliente", async (obj, item) =>
             {
+                MessagingCenter.Unsubscribe<NewClientePage, Cliente>(this, "AgregarCliente");
                 var _item = item as Cliente;
-                _item.MesId = MesSeleccionado.Id;
                 Clientes.Add(_item);
                 await App.Database.InsertItemAsync<Cliente>(_item);
                 //await DataStore.AddItemAsync(_item);

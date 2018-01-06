@@ -4,12 +4,12 @@ using Xamarin.Forms;
 
 namespace TienditaDePraga
 {
-    public partial class ItemDetailPage : ContentPage
+    public partial class DetalleMesPage : ContentPage
     {
         ItemDetailViewModel viewModel;
 
         // Note - The Xamarin.Forms Previewer requires a default, parameterless constructor to render a page.
-        public ItemDetailPage()
+        public DetalleMesPage()
         {
             InitializeComponent();
 
@@ -25,7 +25,7 @@ namespace TienditaDePraga
             BindingContext = viewModel;
         }
 
-        public ItemDetailPage(ItemDetailViewModel viewModel)
+        public DetalleMesPage(ItemDetailViewModel viewModel)
         {
             InitializeComponent();
 

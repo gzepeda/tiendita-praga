@@ -47,7 +47,7 @@ namespace TienditaDePraga.Services
 
         public Task<List<Cliente>> GetClientesForMesAsync(Mes mes)
         {
-            return database.QueryAsync<Cliente>($"SELECT * FROM [Cliente] WHERE [MesId] = '{mes.Id}");
+            return database.QueryAsync<Cliente>($"SELECT * FROM [Cliente] WHERE [MesId] = '{mes.Id}'");
         }
 
         public Task<Mes> GetItemAsync(string id)

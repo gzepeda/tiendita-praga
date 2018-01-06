@@ -5,18 +5,20 @@ using Xamarin.Forms;
 
 namespace TienditaDePraga
 {
-    public partial class NewClientePage : ContentPage
+    public partial class NewMesPage : ContentPage
     {
-        public Cliente ClienteNuevo { get; set; }
+        public Mes Item { get; set; }
 
-        public NewClientePage(Mes mes)
+        public NewMesPage()
         {
             InitializeComponent();
 
-            ClienteNuevo = new Cliente
+            Item = new Mes
             {
-                Nombre = "Ingrese el nombre del cliente",
-                MesId = mes.Id,
+                //TODO - Name of the month
+                Nombre = DateTime.UtcNow.Month.ToString(),
+                Anio = DateTime.UtcNow.Year,
+                NumeroMes = DateTime.UtcNow.Month,
                 Id = Guid.NewGuid().ToString()
             };
 
@@ -25,7 +27,7 @@ namespace TienditaDePraga
 
         async void Save_Clicked(object sender, EventArgs e)
         {
-            MessagingCenter.Send(this, "AgregarCliente", ClienteNuevo);
+            MessagingCenter.Send(this, "AddItem", Item);
             await Navigation.PopToRootAsync();
         }
     }

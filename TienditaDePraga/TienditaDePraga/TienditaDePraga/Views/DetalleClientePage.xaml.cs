@@ -5,20 +5,18 @@ using Xamarin.Forms;
 
 namespace TienditaDePraga
 {
-    public partial class NewItemPage : ContentPage
+    public partial class DetalleClientePage : ContentPage
     {
-        public Mes Item { get; set; }
+        public Cliente Item { get; set; }
 
-        public NewItemPage()
+        public DetalleClientePage()
         {
             InitializeComponent();
 
-            Item = new Mes
+            Item = new Cliente
             {
-                //TODO - Name of the month
-                Nombre = DateTime.UtcNow.Month.ToString(),
-                Anio = DateTime.UtcNow.Year,
-                NumeroMes = DateTime.UtcNow.Month
+                Nombre = "Ingrese nombre de cliente",
+                Id = new Guid().ToString()
             };
 
             BindingContext = this;

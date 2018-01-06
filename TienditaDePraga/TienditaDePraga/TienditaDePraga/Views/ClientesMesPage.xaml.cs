@@ -7,27 +7,21 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace TienditaDePraga.Views
+namespace TienditaDePraga
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ListViewPage1 : ContentPage
+    public partial class ClientesMesPage : ContentPage
     {
-        public ObservableCollection<string> Items { get; set; }
+        ClienteMesViewModel viewModel;
+        private Mes MesActual { get; set; }
 
-        public ListViewPage1()
+        public ClientesMesPage(Mes mes)
         {
             InitializeComponent();
 
-            Items = new ObservableCollection<string>
-            {
-                "Item 1",
-                "Item 2",
-                "Item 3",
-                "Item 4",
-                "Item 5"
-            };
+            MesActual = mes;
 
-            MyListView.ItemsSource = Items;
+            BindingContext = viewModel = new ClienteMesViewModel(MesActual);
         }
 
         async void Handle_ItemTapped(object sender, ItemTappedEventArgs e)
@@ -39,6 +33,17 @@ namespace TienditaDePraga.Views
 
             //Deselect Item
             ((ListView)sender).SelectedItem = null;
+        }
+        async void AddItem_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new NewClientePage(MesActual));
+        }
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+
+            if (viewModel.Clientes.Count == 0)
+                viewModel.LoadItemsCommand.Execute(null);
         }
     }
 }
