@@ -55,8 +55,11 @@ namespace TienditaDePraga
             //Generar Reporte
             String reporte = await viewModel.GenerarReporteAsync();
 
+            //Pedir Correo
+            //String email = await VisualUtils.InputBox(this.Navigation);
+
             //Enviar por correo
-            await viewModel.EnviarReporte(reporte);
+            await viewModel.EnviarReporte(reporte, "");
         }
     }
 }

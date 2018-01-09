@@ -82,6 +82,7 @@
     <Compile Include="Views\NewMesPage.xaml.cs">
       <DependentUpon>NewMesPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\VisualUtils.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="App.xaml">

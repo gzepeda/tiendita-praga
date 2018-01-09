@@ -10,6 +10,7 @@ namespace TienditaDePraga
 {
     public class ClienteMesViewModel : BaseViewModel
     {
+        private readonly string tabCharacter = '\t'.ToString();
         public ObservableCollection<Cliente> Clientes { get; set; }
         public Command LoadItemsCommand { get; set; }
 
@@ -63,7 +64,7 @@ namespace TienditaDePraga
             }
         }
 
-        internal Task EnviarReporte(string reporte)
+        internal Task EnviarReporte(string reporte, string correo)
         {
             var emailMessenger = CrossMessaging.Current.EmailMessenger;
             if (emailMessenger.CanSendEmail)
@@ -71,31 +72,38 @@ namespace TienditaDePraga
                 // Send simple e-mail to single receiver without attachments, bcc, cc etc.
                 //emailMessenger.SendEmail("to.plugins@xamarin.com", "Xamarin Messaging Plugin", "Well hello there from Xam.Messaging.Plugin");
 
-                // Alternatively use EmailBuilder fluent interface to construct more complex e-mail with multiple recipients, bcc, attachments etc. 
-                var email = new EmailMessageBuilder()
-                  .To("gzepeda@gmail.com")
-                //  .Cc("cc.plugins@xamarin.com")
-                //  .Bcc(new[] { "bcc1.plugins@xamarin.com", "bcc2.plugins@xamarin.com" })
-                  .Subject($"Reporte Tiendita del Praga para el mes de {MesSeleccionado.Nombre}")
-                  .Body($"Adjunto --> Reporte Tiendita del Praga para el mes de {MesSeleccionado.Nombre}")
-                  .WithAttachment(reporte, "text/csv")
-                  .Build();
+                try
+                {
+                    // Alternatively use EmailBuilder fluent interface to construct more complex e-mail with multiple recipients, bcc, attachments etc. 
+                    var email = new EmailMessageBuilder()
+                      .To(correo)
+                      //  .Cc("cc.plugins@xamarin.com")
+                      //  .Bcc(new[] { "bcc1.plugins@xamarin.com", "bcc2.plugins@xamarin.com" })
+                      .Subject($"Reporte Tiendita del Praga para el mes de {MesSeleccionado.Nombre}")
+                      .Body($"Adjunto --> Reporte Tiendita del Praga para el mes de {MesSeleccionado.Nombre}")
+                      .WithAttachment(reporte, "application/vnd.ms-excel")
+                      .Build();
 
-                emailMessenger.SendEmail(email);
+                    emailMessenger.SendEmail(email);
+                } catch(Exception ex)
+                {
+                    //TODO - Show alert
+                    Debug.WriteLine(ex.Message);
+                }
             }
             return Task.FromResult(true);
         }
 
         public async Task<string> GenerarReporteAsync()
         {
-            FileStorage file = new FileStorage(MesSeleccionado.Nombre + ".csv");
+            FileStorage file = new FileStorage(MesSeleccionado.Nombre + ".xls");
             //String linea = $"Reporte del mes de {MesSeleccionado.Nombre}\r\n";
             String linea = "";
-            linea = linea + "Cliente,ConsumoDelMes,\r\n";
+            linea = linea + "Cliente" + tabCharacter + "ConsumoDelMes" + Environment.NewLine;
             //Recorro los Consumos y genero un archivo CSV al final. 
             foreach (var cliente in Clientes)
             {
-                linea = linea + $"{cliente.Nombre},";
+                linea = linea + cliente.Nombre + tabCharacter;
 
                 var consumos = await App.Database.GetConsumosForClienteAsync(cliente);
                 Producto producto;
@@ -105,7 +113,7 @@ namespace TienditaDePraga
                     producto = await App.Database.Get<Producto>(p => p.Id == consumo.ProductoId);
                     totalConsumos = totalConsumos + (consumo.CantidadConsumida * producto.PrecioBase);
                 }
-                linea = $"{linea}{totalConsumos.ToString()},\r\n";
+                linea =  linea +  totalConsumos.ToString() + Environment.NewLine;
                 Debug.WriteLine(linea);
             }
             await file.AddStringToReport(linea);
