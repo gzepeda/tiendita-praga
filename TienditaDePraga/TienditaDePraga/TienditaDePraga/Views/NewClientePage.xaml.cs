@@ -15,7 +15,8 @@ namespace TienditaDePraga
 
             ClienteNuevo = new Cliente
             {
-                Nombre = "Ingrese el nombre del cliente",
+                //Nombre = "Ingrese el nombre del cliente",
+                Nombre = "",
                 MesId = mes.Id,
                 Id = Guid.NewGuid().ToString()
             };

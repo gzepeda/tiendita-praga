@@ -16,7 +16,7 @@ namespace TienditaDePraga
             Item = new Mes
             {
                 //TODO - Name of the month
-                Nombre = DateTime.UtcNow.Month.ToString(),
+                //Nombre = DateTime.UtcNow.Month.ToString(),
                 Anio = DateTime.UtcNow.Year,
                 NumeroMes = DateTime.UtcNow.Month,
                 Id = Guid.NewGuid().ToString()

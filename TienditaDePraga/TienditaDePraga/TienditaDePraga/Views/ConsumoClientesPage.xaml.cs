@@ -3,50 +3,46 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
-
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace TienditaDePraga
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ClientesMesPage : ContentPage
+    public partial class ConsumoClientesPage : ContentPage
     {
-        ClienteMesViewModel viewModel;
-        private Mes MesActual { get; set; }
+        ConsumoClientesViewModel viewModel;
+        private Cliente ClienteActual { get; set; }
 
-        public ClientesMesPage(Mes mes)
+        public ConsumoClientesPage(Cliente cliente)
         {
             InitializeComponent();
 
-            MesActual = mes;
+            ClienteActual = cliente;
 
-            BindingContext = viewModel = new ClienteMesViewModel(MesActual);
+            BindingContext = viewModel = new ConsumoClientesViewModel(ClienteActual);
         }
 
         async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
         {
-            var item = args.SelectedItem as Cliente;
+            var item = args.SelectedItem as DetalleConsumo;
             if (item == null)
                 return;
 
+            //Guardar consumo seleccionado
+            await viewModel.AgregarConsumo(item.C);
+
             //await Navigation.PushAsync(new ItemDetailPage(new ItemDetailViewModel(item)));
-            await Navigation.PushAsync(new ConsumoClientesPage(item));
+            await Navigation.PopAsync();
 
             // Manually deselect item
-            ClientesMesListView.SelectedItem = null;
+            ConsumoClientesListView.SelectedItem = null;
         }
-
-        async void AddItem_Clicked(object sender, EventArgs e)
-        {
-            await Navigation.PushAsync(new NewClientePage(MesActual));
-        }
-
         protected override void OnAppearing()
         {
             base.OnAppearing();
 
-            if (viewModel.Clientes.Count == 0)
+            if (viewModel.Consumos.Count == 0)
                 viewModel.LoadItemsCommand.Execute(null);
         }
     }

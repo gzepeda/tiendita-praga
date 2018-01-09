@@ -39,6 +39,7 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Models\Cliente.cs" />
+    <Compile Include="Models\DetalleConsumo.cs" />
     <Compile Include="Models\Consumo.cs" />
     <Compile Include="Models\Producto.cs" />
     <Compile Include="Models\Mes.cs" />
@@ -49,9 +50,13 @@
     <Compile Include="Services\MockDataStore.cs" />
     <Compile Include="ViewModels\AboutViewModel.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
+    <Compile Include="ViewModels\ConsumoClientesViewModel.cs" />
     <Compile Include="ViewModels\ItemDetailViewModel.cs" />
     <Compile Include="ViewModels\ClienteMesViewModel.cs" />
     <Compile Include="ViewModels\MesViewModel.cs" />
+    <Compile Include="Views\ConsumoClientesPage.xaml.cs">
+      <DependentUpon>ConsumoClientesPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ClientesMesPage.xaml.cs">
       <DependentUpon>ClientesMesPage.xaml</DependentUpon>
     </Compile>
@@ -140,6 +145,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Views\NewClientePage.xaml">
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\ConsumoClientesPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
