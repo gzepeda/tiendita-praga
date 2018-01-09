@@ -2,6 +2,9 @@
 using TienditaDePraga.Services;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Microsoft.AppCenter;
+using Microsoft.AppCenter.Analytics;
+using Microsoft.AppCenter.Crashes;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace TienditaDePraga
@@ -26,10 +29,18 @@ namespace TienditaDePraga
         {
             InitializeComponent();
 
-            if (Device.RuntimePlatform == Device.iOS)
+            if (Xamarin.Forms.Device.RuntimePlatform == Xamarin.Forms.Device.iOS)
                 MainPage = new MainPage();
             else
                 MainPage = new NavigationPage(new MainPage());
+        }
+
+        protected override void OnStart()
+        {
+            AppCenter.Start("ios=8e8abc7f-c6f2-4d8d-a977-ff7e09c63541;" + 
+                "uwp={Your UWP App secret here};" +
+                   "android={Your Android App secret here}",
+                   typeof(Analytics), typeof(Crashes));
         }
     }
 }
