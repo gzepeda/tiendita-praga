@@ -4,7 +4,6 @@ using System.Diagnostics;
 using System.Threading.Tasks;
 
 using Xamarin.Forms;
-using TienditaDePraga.Services;
 
 namespace TienditaDePraga
 {

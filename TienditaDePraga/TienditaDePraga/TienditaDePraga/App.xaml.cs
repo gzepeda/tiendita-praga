@@ -1,5 +1,4 @@
 ﻿using System;
-using TienditaDePraga.Services;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Microsoft.AppCenter;
@@ -20,7 +19,7 @@ namespace TienditaDePraga
                 if (database == null)
                 {
                     database = new DatabaseService(DependencyService.Get<IFileHelper>().GetLocalFilePath("tienditaSQLite.db3"));
-                    database.CreateTables();
+                    //database.CreateTables();
                 }
                 return database;
             }

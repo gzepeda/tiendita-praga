@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace TienditaDePraga
 {
-    public interface IFileHelper
+    public interface IFileStorage
     {
-        string GetLocalFilePath(string filename);
+        Task<bool> CreateReport(string name);
+        Task<bool> AddStringToReport(string content);
     }
 }

@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace TienditaDePraga
 {
-    public interface IFileHelper
+    public interface IEmailSpecificSender
     {
-        string GetLocalFilePath(string filename);
+        Task<bool> SendEmailWithAttachment(string to, string subject, string body, string attachmentPath);
     }
 }

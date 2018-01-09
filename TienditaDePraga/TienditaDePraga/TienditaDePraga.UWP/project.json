@@ -1,7 +1,9 @@
 ﻿{
   "dependencies": {
     "Microsoft.NETCore.UniversalWindowsPlatform": "6.0.5",
+    "PCLStorage": "1.0.2",
     "sqlite-net-pcl": "1.5.166-beta",
+    "Xam.Plugins.Messaging": "5.0.0",
     "Xamarin.Forms": "2.5.0.121934"
   },
   "frameworks": {

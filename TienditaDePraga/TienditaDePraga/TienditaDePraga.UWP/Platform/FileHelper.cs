@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.Storage;
-using TienditaDePraga.Services;
 using Xamarin.Forms;
 using TienditaDePraga.UWP;
 using System.IO;

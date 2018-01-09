@@ -6,7 +6,8 @@ using System.Text;
 using System.Threading.Tasks;
 using SQLite;
 
-namespace TienditaDePraga.Services
+[assembly: Xamarin.Forms.Dependency(typeof(TienditaDePraga.DatabaseService))]
+namespace TienditaDePraga
 {
     public class DatabaseService
     {
@@ -15,10 +16,7 @@ namespace TienditaDePraga.Services
         public DatabaseService(string dbPath)
         {
             database = new SQLiteAsyncConnection(dbPath);
-        }
 
-        public void CreateTables()
-        {
             //Create all the tables
             database.CreateTableAsync<Mes>().Wait();
             database.CreateTableAsync<Cliente>().Wait();
@@ -63,9 +61,13 @@ namespace TienditaDePraga.Services
 
         public async Task<List<Consumo>> InsertarConsumosDefaultAsync(Cliente cliente)
         {
+            Consumo consumo;
             //Selecciono la lista de productos y los ingreso con consumo cero
             var productos = await GetAllItemsAsync<Producto>();
-            Consumo consumo;
+            if (productos.Count == 0)
+            {
+                productos = CargarProductosIniciales();
+            }
 
             foreach (var producto in productos)
             {
@@ -83,6 +85,23 @@ namespace TienditaDePraga.Services
 
             //Retorno la lista de consumos ingresados
             return await GetConsumosForClienteAsync(cliente);
+        }
+
+        private List<Producto> CargarProductosIniciales()
+        {
+            var items = new List<Producto>
+            {
+                new Producto { Id = Guid.NewGuid().ToString(), Nombre = "Frituras Simples", Descripcion = "Frituras Simples", PrecioBase = 2 },
+                new Producto { Id = Guid.NewGuid().ToString(), Nombre = "Lays", Descripcion = "Lays", PrecioBase = 4 },
+                new Producto { Id = Guid.NewGuid().ToString(), Nombre = "Gaseosas", Descripcion = "Gaseosas", PrecioBase = 6},
+                new Producto { Id = Guid.NewGuid().ToString(), Nombre = "Jugos", Descripcion = "Jugos", PrecioBase = 7 },
+                new Producto { Id = Guid.NewGuid().ToString(), Nombre = "Snacks Chocolates", Descripcion = "Snacks Chocolates",  PrecioBase = 11 },
+                new Producto { Id = Guid.NewGuid().ToString(), Nombre = "Cerveza", Descripcion = "Cerveza", PrecioBase = 10 },
+            };
+
+            database.InsertAllAsync(items);
+
+            return items;
         }
 
         public Task<Mes> GetItemAsync(string id)

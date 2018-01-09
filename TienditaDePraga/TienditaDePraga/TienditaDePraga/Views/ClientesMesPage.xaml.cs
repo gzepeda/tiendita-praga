@@ -49,5 +49,14 @@ namespace TienditaDePraga
             if (viewModel.Clientes.Count == 0)
                 viewModel.LoadItemsCommand.Execute(null);
         }
+
+        async void EnviarReporte_Clicked(object sender, EventArgs e)
+        {
+            //Generar Reporte
+            String reporte = await viewModel.GenerarReporteAsync();
+
+            //Enviar por correo
+            await viewModel.EnviarReporte(reporte);
+        }
     }
 }
