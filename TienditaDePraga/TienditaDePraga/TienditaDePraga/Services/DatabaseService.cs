@@ -91,12 +91,16 @@ namespace TienditaDePraga
         {
             var items = new List<Producto>
             {
-                new Producto { Id = Guid.NewGuid().ToString(), Nombre = "Frituras Simples", Descripcion = "Frituras Simples", PrecioBase = 2 },
-                new Producto { Id = Guid.NewGuid().ToString(), Nombre = "Lays", Descripcion = "Lays", PrecioBase = 4 },
-                new Producto { Id = Guid.NewGuid().ToString(), Nombre = "Gaseosas", Descripcion = "Gaseosas", PrecioBase = 6},
-                new Producto { Id = Guid.NewGuid().ToString(), Nombre = "Jugos", Descripcion = "Jugos", PrecioBase = 7 },
-                new Producto { Id = Guid.NewGuid().ToString(), Nombre = "Snacks Chocolates", Descripcion = "Snacks Chocolates",  PrecioBase = 11 },
+                new Producto { Id = Guid.NewGuid().ToString(), Nombre = "Tortrix Varios", Descripcion = "Tortrix Varios", PrecioBase = 2 },
+                new Producto { Id = Guid.NewGuid().ToString(), Nombre = "Frituras tipo Lays", Descripcion = "Lays", PrecioBase = 4 },
+                new Producto { Id = Guid.NewGuid().ToString(), Nombre = "Coca Cola Lata", Descripcion = "Gaseosas", PrecioBase = 6},
+                new Producto { Id = Guid.NewGuid().ToString(), Nombre = "Del Monte", Descripcion = "Jugos", PrecioBase = 6 },
+                new Producto { Id = Guid.NewGuid().ToString(), Nombre = "Chocolates variados", Descripcion = "Snacks Chocolates",  PrecioBase = 11 },
                 new Producto { Id = Guid.NewGuid().ToString(), Nombre = "Cerveza", Descripcion = "Cerveza", PrecioBase = 10 },
+                new Producto { Id = Guid.NewGuid().ToString(), Nombre = "Chips Ahoy", Descripcion = "Snacks",  PrecioBase = 7 },
+                new Producto { Id = Guid.NewGuid().ToString(), Nombre = "Chupetes", Descripcion = "Snacks",  PrecioBase = 5 },
+                new Producto { Id = Guid.NewGuid().ToString(), Nombre = "Magdalena", Descripcion = "Magdalena",  PrecioBase = 3 },
+                new Producto { Id = Guid.NewGuid().ToString(), Nombre = "Dona", Descripcion = "Dona",  PrecioBase = 6 },
             };
 
             database.InsertAllAsync(items);

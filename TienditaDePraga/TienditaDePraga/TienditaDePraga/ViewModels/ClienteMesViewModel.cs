@@ -10,7 +10,7 @@ namespace TienditaDePraga
 {
     public class ClienteMesViewModel : BaseViewModel
     {
-        private readonly string tabCharacter = '\t'.ToString();
+        private readonly string tabCharacter = " ==> ";
         public ObservableCollection<Cliente> Clientes { get; set; }
         public Command LoadItemsCommand { get; set; }
 
@@ -81,7 +81,7 @@ namespace TienditaDePraga
                       //  .Bcc(new[] { "bcc1.plugins@xamarin.com", "bcc2.plugins@xamarin.com" })
                       .Subject($"Reporte Tiendita del Praga para el mes de {MesSeleccionado.Nombre}")
                       .Body($"Adjunto --> Reporte Tiendita del Praga para el mes de {MesSeleccionado.Nombre}")
-                      .WithAttachment(reporte, "application/vnd.ms-excel")
+                      .WithAttachment(reporte, "text/plain")
                       .Build();
 
                     emailMessenger.SendEmail(email);
@@ -96,11 +96,11 @@ namespace TienditaDePraga
 
         public async Task<string> GenerarReporteAsync()
         {
-            FileStorage file = new FileStorage(MesSeleccionado.Nombre + ".xls");
+            FileStorage file = new FileStorage(MesSeleccionado.Nombre + ".txt");
             //String linea = $"Reporte del mes de {MesSeleccionado.Nombre}\r\n";
             String linea = "";
             linea = linea + "Cliente" + tabCharacter + "ConsumoDelMes" + Environment.NewLine;
-            //Recorro los Consumos y genero un archivo CSV al final. 
+            //Recorro los Consumos y genero un archivo txt al final. 
             foreach (var cliente in Clientes)
             {
                 linea = linea + cliente.Nombre + tabCharacter;
