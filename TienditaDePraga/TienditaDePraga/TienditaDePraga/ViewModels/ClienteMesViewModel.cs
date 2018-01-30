@@ -94,6 +94,19 @@ namespace TienditaDePraga
             return Task.FromResult(true);
         }
 
+        public async Task removeCliente(Cliente cliente)
+        {
+            try
+            {
+                await App.Database.DeleteItemAsync<Cliente>(cliente);
+                Clientes.Remove(cliente);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
+            }
+        }
+
         public async Task<string> GenerarReporteAsync()
         {
             FileStorage file = new FileStorage(MesSeleccionado.Nombre + ".txt");

@@ -59,5 +59,17 @@ namespace TienditaDePraga
                 IsBusy = false;
             }
         }
+        public async Task removeMes(Mes mes)
+        {
+            try
+            {
+                await App.Database.DeleteItemAsync<Mes>(mes);
+                Meses.Remove(mes);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
+            }
+        }
     }
 }

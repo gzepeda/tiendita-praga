@@ -61,5 +61,18 @@ namespace TienditaDePraga
             //Enviar por correo
             await viewModel.EnviarReporte(reporte, "");
         }
+        async void OnDelete(object sender, EventArgs e)
+        {
+            var mi = ((MenuItem)sender);
+            //DisplayAlert("Delete Context Action", mi.CommandParameter + " delete context action", "OK");
+            if (mi == null)
+                return;
+
+            var cliente = mi.BindingContext as Cliente;
+            if (cliente == null)
+                return;
+
+            await viewModel.removeCliente(cliente);
+        }
     }
 }

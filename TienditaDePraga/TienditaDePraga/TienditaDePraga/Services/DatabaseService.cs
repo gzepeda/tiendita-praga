@@ -140,7 +140,7 @@ namespace TienditaDePraga
             return database.UpdateAsync(item);
         }
 
-        public Task<int> DeleteItemAsync(Mes item)
+        public Task<int> DeleteItemAsync<T>(T item) where T:new()
         {
             return database.DeleteAsync(item);
         }

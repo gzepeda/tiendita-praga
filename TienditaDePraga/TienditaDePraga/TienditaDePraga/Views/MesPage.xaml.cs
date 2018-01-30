@@ -42,5 +42,19 @@ namespace TienditaDePraga
             if (viewModel.Meses.Count == 0)
                 viewModel.LoadItemsCommand.Execute(null);
         }
+        async void OnDelete(object sender, EventArgs e)
+        {
+            var mi = ((MenuItem)sender);
+            //DisplayAlert("Delete Context Action", mi.CommandParameter + " delete context action", "OK");
+            if (mi == null)
+                return;
+
+            var mes = mi.BindingContext as Mes;
+            if (mes == null)
+                return;
+
+            await viewModel.removeMes(mes);
+        }
+
     }
 }
