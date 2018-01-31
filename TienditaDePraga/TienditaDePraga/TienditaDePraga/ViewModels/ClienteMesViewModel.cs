@@ -22,7 +22,12 @@ namespace TienditaDePraga
             MesSeleccionado = mes;
             Clientes = new ObservableCollection<Cliente>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
-                        
+
+            //SuscribirAMensajes();
+        }
+
+        public void SuscribirAMensajes()
+        {
             MessagingCenter.Subscribe<NewClientePage, Cliente>(this, "AgregarCliente", async (obj, item) =>
             {
                 MessagingCenter.Unsubscribe<NewClientePage, Cliente>(this, "AgregarCliente");

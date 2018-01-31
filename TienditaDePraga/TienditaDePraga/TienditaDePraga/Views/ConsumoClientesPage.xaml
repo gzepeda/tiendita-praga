@@ -25,14 +25,13 @@
                     </ViewCell.ContextActions>
                     <StackLayout Padding="2">
                         <StackLayout Orientation="Horizontal" >
-                            <Label Text="{Binding P.Nombre}" 
-                           LineBreakMode="NoWrap" 
+                            <Label Text="{Binding P.Nombre}" HorizontalOptions="StartAndExpand"
                            Style="{DynamicResource ListItemTextStyle}" 
-                           FontSize="Medium" />
-                            <Label Text="Precio: Q."
+                           FontSize="Large" />
+                            <Label Text="Precio: Q." HorizontalOptions="End"
                                Style="{DynamicResource ListItemDetailTextStyle}"
                                FontSize="Small" />
-                            <Label Text="{Binding P.PrecioBase}" 
+                            <Label Text="{Binding P.PrecioBase}" HorizontalOptions="End"
                                 Style="{DynamicResource ListItemDetailTextStyle}"
                                 FontSize="Small"/>
                         </StackLayout>

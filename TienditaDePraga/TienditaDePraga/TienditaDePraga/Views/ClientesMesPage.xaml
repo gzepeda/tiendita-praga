@@ -4,8 +4,8 @@
              Title="{Binding Title}"
              x:Class="TienditaDePraga.ClientesMesPage">
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Agregar" Clicked="AddItem_Clicked" />
         <ToolbarItem Text="Reporte" Clicked="EnviarReporte_Clicked"/>
+        <ToolbarItem Text=" + " Clicked="AddItem_Clicked" />
     </ContentPage.ToolbarItems>
     <ListView x:Name="ClientesMesListView"
             ItemsSource="{Binding Clientes}"
@@ -24,11 +24,12 @@
                         <MenuItem Clicked="OnDelete" CommandParameter="{Binding .}"
                         Text="Delete" IsDestructive="True" />
                     </ViewCell.ContextActions>
-                        <StackLayout Padding="10">
-                            <Label Text="{Binding Nombre}" 
+                    <StackLayout Padding="10" Orientation="Horizontal" >
+                            <Label Text="{Binding Nombre}" HorizontalOptions="StartAndExpand"
                                LineBreakMode="NoWrap" 
                                Style="{DynamicResource ListItemTextStyle}" 
-                               FontSize="18" />
+                               FontSize="Large" />
+                            
                         </StackLayout>
                     </ViewCell>
                 </DataTemplate>

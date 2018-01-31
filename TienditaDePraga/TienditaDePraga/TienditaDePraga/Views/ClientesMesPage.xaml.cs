@@ -46,6 +46,8 @@ namespace TienditaDePraga
         {
             base.OnAppearing();
 
+            viewModel.SuscribirAMensajes();
+
             if (viewModel.Clientes.Count == 0)
                 viewModel.LoadItemsCommand.Execute(null);
         }
