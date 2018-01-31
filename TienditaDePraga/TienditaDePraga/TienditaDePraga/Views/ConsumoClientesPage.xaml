@@ -4,7 +4,7 @@
              Title="{Binding Title}"
              x:Class="TienditaDePraga.ConsumoClientesPage">
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Agregar" />
+        <ToolbarItem Text="Agregar" Clicked="AgregarConsumo_Clicked"/>
     </ContentPage.ToolbarItems>
     <ListView x:Name="ConsumoClientesListView"
             ItemsSource="{Binding Consumos}"
@@ -19,17 +19,31 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <StackLayout Padding="2">
-                        <Label Text="{Binding P.Nombre}" 
+                    <ViewCell.ContextActions>
+                        <MenuItem Clicked="OnDelete" CommandParameter="{Binding .}"
+                        Text="Delete" IsDestructive="True" />
+                    </ViewCell.ContextActions>
+                    <StackLayout Padding="2">
+                        <StackLayout Orientation="Horizontal" >
+                            <Label Text="{Binding P.Nombre}" 
                            LineBreakMode="NoWrap" 
                            Style="{DynamicResource ListItemTextStyle}" 
                            FontSize="Medium" />
-                        <Label Text="Cantidad consumida: "
-                           Style="{DynamicResource ListItemDetailTextStyle}"
-                           FontSize="Small" />
-                        <Label Text="{Binding C.CantidadConsumida}" 
-                            Style="{DynamicResource ListItemDetailTextStyle}"
-                            FontSize="Small"/>
+                            <Label Text="Precio: Q."
+                               Style="{DynamicResource ListItemDetailTextStyle}"
+                               FontSize="Small" />
+                            <Label Text="{Binding P.PrecioBase}" 
+                                Style="{DynamicResource ListItemDetailTextStyle}"
+                                FontSize="Small"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="Cantidad consumida: "
+                               Style="{DynamicResource ListItemDetailTextStyle}"
+                               FontSize="Small" />
+                            <Label Text="{Binding C.CantidadConsumida}" 
+                                Style="{DynamicResource ListItemDetailTextStyle}"
+                                FontSize="Small"/>
+                        </StackLayout>
                     </StackLayout>
                     </ViewCell>
                 </DataTemplate>

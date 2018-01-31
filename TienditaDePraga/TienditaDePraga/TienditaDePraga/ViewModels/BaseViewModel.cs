@@ -9,7 +9,7 @@ namespace TienditaDePraga
 {
     public class BaseViewModel : INotifyPropertyChanged
     {
-        public IDataStore<Mes> DataStore => DependencyService.Get<IDataStore<Mes>>() ?? new MockDataStore();
+        //public IDataStore<Mes> DataStore => DependencyService.Get<IDataStore<Mes>>() ?? new MockDataStore();
 
         bool isBusy = false;
         public bool IsBusy

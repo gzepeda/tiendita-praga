@@ -20,21 +20,36 @@ namespace TienditaDePraga
             Title = $"Consumos del Cliente: {ClienteSeleccionado.Nombre}";
             Consumos = new ObservableCollection<DetalleConsumo>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
-            
-            //TODO Ajustar para nuevos consumos
-            //MessagingCenter.Subscribe<NewClientePage, Cliente>(this, "AgregarConsumo", async (obj, item) =>
-            //{
-            //    MessagingCenter.Unsubscribe<NewClientePage, Cliente>(this, "AgregarConsumo");
-            //    var _item = item as Cliente;
-            //    Consumos.Add(_item);
-            //    await App.Database.InsertItemAsync<Cliente>(_item);
-            //});
+
+            MessagingCenter.Subscribe<NewConsumoPage, Consumo>(this, "AgregarConsumo", async (obj, item) =>
+            {
+                MessagingCenter.Unsubscribe<NewConsumoPage, Consumo>(this, "AgregarConsumo");
+                var _item = item as Consumo;
+
+                var prod = await App.Database.Get<Producto>(p => p.Id == _item.ProductoId);
+
+                var detalleConsumo = new DetalleConsumo();
+                detalleConsumo.P = prod;
+                detalleConsumo.C = _item;
+                Consumos.Add(detalleConsumo);
+
+                await App.Database.InsertItemAsync(_item);
+            });
         }
 
         public async Task AgregarConsumo(Consumo c)
         {
             c.CantidadConsumida++;
-            await App.Database.UpdateItemAsync<Consumo>(c);
+            await App.Database.UpdateItemAsync(c);
+        }
+
+        public async Task QuitarConsumo(Consumo c)
+        {
+            if (c.CantidadConsumida > 0)
+            {
+                c.CantidadConsumida--;
+                await App.Database.UpdateItemAsync(c);
+            }
         }
 
         async Task ExecuteLoadItemsCommand()

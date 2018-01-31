@@ -5,7 +5,7 @@
              x:Class="TienditaDePraga.ClientesMesPage">
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Agregar" Clicked="AddItem_Clicked" />
-        <ToolbarItem Text="Enviar Reporte" Clicked="EnviarReporte_Clicked"/>
+        <ToolbarItem Text="Reporte" Clicked="EnviarReporte_Clicked"/>
     </ContentPage.ToolbarItems>
     <ListView x:Name="ClientesMesListView"
             ItemsSource="{Binding Clientes}"
