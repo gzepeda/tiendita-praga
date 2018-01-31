@@ -109,7 +109,7 @@ namespace TienditaDePraga
 
         public async Task<string> GenerarReporteAsync()
         {
-            FileStorage file = new FileStorage(MesSeleccionado.Nombre + ".txt");
+            FileStorage file = new FileStorage(MesSeleccionado.Nombre.Replace(@"/", string.Empty) + ".txt");
             //String linea = $"Reporte del mes de {MesSeleccionado.Nombre}\r\n";
             String linea = "";
             linea = linea + "Cliente" + tabCharacter + "ConsumoDelMes" + Environment.NewLine;
