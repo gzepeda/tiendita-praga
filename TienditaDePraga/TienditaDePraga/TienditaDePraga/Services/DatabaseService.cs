@@ -56,7 +56,8 @@ namespace TienditaDePraga
             return database.QueryAsync<Consumo>($"SELECT [Consumo].* " +
                 $" FROM [Consumo] " +
                 $" WHERE [MesId] = '{cliente.MesId}' " +
-                $"  AND [ClienteId] = '{cliente.Id}'");
+                $"  AND [ClienteId] = '{cliente.Id}' " +
+                $" ORDER BY [CantidadConsumida] DESC ");
         }
 
         public async Task<List<Consumo>> InsertarConsumosDefaultAsync(Cliente cliente)
