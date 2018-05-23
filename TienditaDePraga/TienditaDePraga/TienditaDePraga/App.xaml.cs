@@ -29,9 +29,9 @@ namespace TienditaDePraga
             InitializeComponent();
 
             if (Xamarin.Forms.Device.RuntimePlatform == Xamarin.Forms.Device.iOS)
-                MainPage = new MainPage();
+                MainPage = new MainMenuPage();
             else
-                MainPage = new NavigationPage(new MainPage());
+                MainPage = new MainMenuPage();
         }
 
         protected override void OnStart()

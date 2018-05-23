@@ -25,7 +25,7 @@
 					<Label.FormattedText>
 						<FormattedString>
 							<FormattedString.Spans>
-								<Span Text="AppName" FontAttributes="Bold" FontSize="22" />
+                                <Span Text="Tiendita de Praga" FontAttributes="Bold" FontSize="22" />
 								<Span Text=" " />
 								<Span Text="1.0" ForegroundColor="{StaticResource LightTextColor}" />
 							</FormattedString.Spans>
@@ -36,10 +36,11 @@
 					<Label.FormattedText>
 						<FormattedString>
 							<FormattedString.Spans>
-								<Span Text="This app is written in C# and native APIs using the" />
+                                <Span Text="Una App para hacer cuentas de lo vendido en la tienda de PragaWeb, en donde LaGuindaFotografia.com tiene su estudio." />
 								<Span Text=" " />
-								<Span Text="Xamarin Platform" FontAttributes="Bold" />
-								<Span Text="." />
+                                <Span Text="El objetivo principal es hacer el cierre de los consumos de una tienda anotados en un cuaderno por parte de los clientes de la " />
+                                <Span Text="misma, que toman la mercadería y se apuntan."/>
+                                <Span Text=" " />
 							</FormattedString.Spans>
 						</FormattedString>
 					</Label.FormattedText>
@@ -48,11 +49,14 @@
 					<Label.FormattedText>
 						<FormattedString>
 							<FormattedString.Spans>
-								<Span Text="It shares code with its" />
-								<Span Text=" " />
-								<Span Text="iOS, Android, and Windows" FontAttributes="Bold" />
-								<Span Text=" " />
-								<Span Text="versions." />
+                                <Span Text="Esta App es un buen ejemplo de " />
+                                <Span Text=" " />
+                                <Span Text=" Xamarin Forms, " />
+                                <Span Text=" " />
+                                <Span Text=" Aplicaciones Multiplataforma y " />
+                                <Span Text=" " />
+                                <Span Text=" Base de datos local" />
+                                <Span Text=" " />
 							</FormattedString.Spans>
 						</FormattedString>
 					</Label.FormattedText>
