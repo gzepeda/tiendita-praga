@@ -35,7 +35,7 @@ namespace TienditaDePraga
             // The Master page is actually the Menu page for us
             this.Master = new ContentPage
             {
-                Title = "The Title is required.",
+                Title = "ΞΞ",
                 BackgroundColor = Color.Silver,
                 Content = new StackLayout
                 {
