@@ -27,8 +27,8 @@ namespace TienditaDePraga
         async void Save_Clicked(object sender, EventArgs e)
         {
             MessagingCenter.Send(this, "AgregarCliente", ClienteNuevo);
-            await Navigation.PopToRootAsync();
-            //await Navigation.PopAsync();
+            //await Navigation.PopToRootAsync();
+            await Navigation.PopAsync();
         }
     }
 }

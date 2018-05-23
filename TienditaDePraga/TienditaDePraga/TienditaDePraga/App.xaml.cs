@@ -38,7 +38,7 @@ namespace TienditaDePraga
         {
             AppCenter.Start("ios=8e8abc7f-c6f2-4d8d-a977-ff7e09c63541;" + 
                 "uwp={Your UWP App secret here};" +
-                   "android={Your Android App secret here}",
+                   "android=006b282f-5986-480f-aaf4-c4d9cac40d7b",
                    typeof(Analytics), typeof(Crashes));
         }
     }

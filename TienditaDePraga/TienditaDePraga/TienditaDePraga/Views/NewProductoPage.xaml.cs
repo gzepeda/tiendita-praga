@@ -1,26 +1,28 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace TienditaDePraga
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class NewMesPage : ContentPage
-    {
-        public Mes Item { get; set; }
+	[XamlCompilation(XamlCompilationOptions.Compile)]
+	public partial class NewProductoPage : ContentPage
+	{
+        public Producto Item { get; set; }
 
-        public NewMesPage()
-        {
+		public NewProductoPage ()
+		{
             InitializeComponent();
 
-            Item = new Mes
+            Item = new Producto
             {
                 //TODO - Name of the month
-                //Nombre = DateTime.UtcNow.Month.ToString(),
-                Anio = DateTime.UtcNow.Year,
-                NumeroMes = DateTime.UtcNow.Month,
+                PrecioBase = 2,
+                CostoUnitario = 1,
                 Id = Guid.NewGuid().ToString()
             };
 

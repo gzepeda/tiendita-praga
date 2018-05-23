@@ -1,5 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Linq;
 using System.Threading.Tasks;
 
 using Xamarin.Forms;
@@ -8,40 +10,40 @@ using Xamarin.Forms.Xaml;
 namespace TienditaDePraga
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class MesPage : ContentPage
+    public partial class ProductosPage : ContentPage
     {
-        MesViewModel viewModel;
+        ProductosViewModel viewModel;
 
-        public MesPage()
+        public ProductosPage()
         {
             InitializeComponent();
 
-            BindingContext = viewModel = new MesViewModel();
+            BindingContext = viewModel = new ProductosViewModel();
         }
 
         async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
         {
-            var item = args.SelectedItem as Mes;
+            var item = args.SelectedItem as Producto;
             if (item == null)
                 return;
 
             //await Navigation.PushAsync(new ItemDetailPage(new ItemDetailViewModel(item)));
-            await Navigation.PushAsync(new ClientesMesPage(item));
+            //await Navigation.PushAsync(new ClientesMesPage(item));
 
             // Manually deselect item
-            ItemsListView.SelectedItem = null;
+            //ItemsListView.SelectedItem = null;
         }
 
         async void AddItem_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new NewMesPage());
+            await Navigation.PushAsync(new NewProductoPage());
         }
 
         protected override void OnAppearing()
         {
             base.OnAppearing();
 
-            if (viewModel.Meses.Count == 0)
+            if (viewModel.Productos.Count == 0)
                 viewModel.LoadItemsCommand.Execute(null);
         }
         async void OnDelete(object sender, EventArgs e)
@@ -51,12 +53,11 @@ namespace TienditaDePraga
             if (mi == null)
                 return;
 
-            var mes = mi.BindingContext as Mes;
-            if (mes == null)
+            var producto = mi.BindingContext as Producto;
+            if (producto == null)
                 return;
 
-            await viewModel.removeMes(mes);
+            await viewModel.removeProducto(producto);
         }
-
     }
 }

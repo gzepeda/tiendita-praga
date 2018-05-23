@@ -16,47 +16,21 @@ namespace TienditaDePraga
                 Font = Font.SystemFontOfSize(20),
                 HorizontalOptions = LayoutOptions.Center
             };
-            // create an array of the Page names
-            string[] myPageNames = {
-                "Main",
-                "Page 2",
-                "Page 3",
+
+            Page itemsPage = new NavigationPage(new MesPage())
+            {
+                Title = "Cortes"
             };
 
-            // Create ListView for the Master page.
-            ListView listView = new ListView
+            Page aboutPage = new NavigationPage(new AboutPage())
             {
-                ItemsSource = myPageNames,
+                Title = "Acerca de"
             };
 
-            Page itemsPage, aboutPage = null;
-            switch (Device.RuntimePlatform)
+            Page productosPage = new NavigationPage(new ProductosPage())
             {
-                case Device.iOS:
-                    itemsPage = new NavigationPage(new MesPage())
-                    {
-                        Title = "Browse"
-                    };
-
-                    aboutPage = new NavigationPage(new AboutPage())
-                    {
-                        Title = "About"
-                    };
-                    itemsPage.Icon = "tab_feed.png";
-                    aboutPage.Icon = "tab_about.png";
-                    break;
-                default:
-                    itemsPage = new NavigationPage(new MesPage())
-                    {
-                        Title = "Browse"
-                    };
-
-                    aboutPage = new NavigationPage(new AboutPage())
-                    {
-                        Title = "About"
-                    };
-                    break;
-            }
+                Title = "Lista de productos"
+            };
 
             // The Master page is actually the Menu page for us
             this.Master = new ContentPage
@@ -66,7 +40,8 @@ namespace TienditaDePraga
                 Content = new StackLayout
                 {
                     Padding = new Thickness(5, 50),
-                    Children = { Link(this, "Meses", itemsPage),
+                    Children = { Link(this, "Cortes", itemsPage),
+                                 Link(this, "Productos", productosPage),
                                  Link(this, "Acerca de...", aboutPage)}
                 }
             };
